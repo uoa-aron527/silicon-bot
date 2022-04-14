@@ -1,0 +1,24 @@
+{
+  "dependencies": {
+    "discord.js": "^13.6.0",
+    "dotenv": "^16.0.0",
+    "node-fetch": "^3.2.3"
+  },
+  "name": "silicon-bot",
+  "description": "Starting to create a simple discord bot",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uoa-aron527/silicon-bot.git"
+  },
+  "author": "Aryan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/uoa-aron527/silicon-bot/issues"
+  },
+  "homepage": "https://github.com/uoa-aron527/silicon-bot#readme"
+}
