@@ -6,6 +6,9 @@ const token = process.env.TOKEN;
 
 const prefix = "--";
 
+const PLAYER_STATS_URL = `https://api.brawlhalla.com/player/2/stats?api_key=${process.env.APIKEY}`;
+const PLAYER_RANK_URL = `https://api.brawlhalla.com/player/2/ranked?api_key=${process.env.APIKEY}`;
+
 //const fetch = require("node-fetch");
 
 client.once("ready", () => {
