@@ -6,8 +6,11 @@ const token = process.env.TOKEN;
 
 const prefix = "--";
 
+
+// Base URLs of endpoints as noted in the Brawlhalla Dev site at https://dev.brawlhalla.com/
 const PLAYER_STATS_URL = `https://api.brawlhalla.com/player/2/stats?api_key=${process.env.APIKEY}`;
 const PLAYER_RANK_URL = `https://api.brawlhalla.com/player/2/ranked?api_key=${process.env.APIKEY}`;
+const LEGEND_URL_BY_ID = `https://api.brawlhalla.com/legend/3/?api_key=${process.env.APIKEY}`;
 
 //const fetch = require("node-fetch");
 
