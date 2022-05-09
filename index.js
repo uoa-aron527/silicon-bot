@@ -1,4 +1,6 @@
 const { Client, Intents } = require('discord.js');
+const axios = require('axios');
+
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 
 require('dotenv').config();
@@ -18,18 +20,28 @@ client.once("ready", () => {
     console.log("Silicon is up and running!");
 });
 
-client.on("messageCreate", msg => {
+client.on("messageCreate", async msg => {
     // If invalid prefix or a bot has sent the message, no actions
     if(!msg.content.startsWith(prefix) || msg.author.bot) return;        
 
     const args = msg.content.slice(prefix.length).split(/ +/);
-    const command = args.shift();
+    const command = args[0];
 
     if(command == 'Hey'){
         msg.channel.send("Yo Silicon here!");
     }
-    else if(command == 'source'){
+
+    if(command == 'source'){
         msg.channel.send("Find me at https://github.com/uoa-aron527/silicon-bot");
+    }
+    
+    if(command == 'stats'){
+        const getLegendStats = async () => {
+            let response = await axios.get(`https://api.brawlhalla.com/legend/${args[1]}/?api_key=${process.env.APIKEY}`);
+            return response.data;
+        }
+        const statsValue = await getLegendStats();
+        console.log(statsValue);
     }
 });
 
