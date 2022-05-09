@@ -34,8 +34,8 @@ client.on("messageCreate", async msg => {
     if(command == 'source'){
         msg.channel.send("Find me at https://github.com/uoa-aron527/silicon-bot");
     }
-    
-    if(command == 'stats'){
+
+    if(command == 'legend'){
         const getLegendStats = async () => {
             let response = await axios.get(`https://api.brawlhalla.com/legend/${args[1]}/?api_key=${process.env.APIKEY}`);
             return response.data;
