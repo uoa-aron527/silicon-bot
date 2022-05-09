@@ -43,6 +43,15 @@ client.on("messageCreate", async msg => {
         const statsValue = await getLegendStats();
         console.log(statsValue);
     }
+
+    if(command == 'stats'){
+        const getPlayerStats = async () => {
+            let response = await axios.get(`https://api.brawlhalla.com/player/${args[1]}/stats?api_key=${process.env.APIKEY}`);
+            return response.data;
+        }
+        const statsValue = await getPlayerStats();
+        console.log(statsValue);
+    }
 });
 
 client.login(token);
