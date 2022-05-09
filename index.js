@@ -27,14 +27,17 @@ client.on("messageCreate", async msg => {
     const args = msg.content.slice(prefix.length).split(/ +/);
     const command = args[0];
 
+    // Introductory command
     if(command == 'Hey'){
         msg.channel.send("Yo Silicon here!");
     }
 
+    // Command leading to Git repo source 
     if(command == 'source'){
         msg.channel.send("Find me at https://github.com/uoa-aron527/silicon-bot");
     }
 
+    // Command to fetch a character's data. Eg command -> --legend {legendID}
     if(command == 'legend'){
         const getLegendStats = async () => {
             let response = await axios.get(`https://api.brawlhalla.com/legend/${args[1]}/?api_key=${process.env.APIKEY}`);
@@ -44,6 +47,7 @@ client.on("messageCreate", async msg => {
         console.log(statsValue);
     }
 
+    // Command to fetch a player's full time game data. Eg command -> --stats {brawlhallaID}
     if(command == 'stats'){
         const getPlayerStats = async () => {
             let response = await axios.get(`https://api.brawlhalla.com/player/${args[1]}/stats?api_key=${process.env.APIKEY}`);
