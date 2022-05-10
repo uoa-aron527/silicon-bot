@@ -59,7 +59,7 @@ client.on("messageCreate", async msg => {
         }
         const brawlhallaID = await getBrawlhallaID();
         console.log(brawlhallaID);
-        // msg.reply(`Hey, your brawlhalla ID is ${brawlhallaID["brawlhalla_id"]}`);
+        msg.reply(`Hey, your brawlhalla ID is ${brawlhallaID["brawlhalla_id"]}`);
     }
 });
 
