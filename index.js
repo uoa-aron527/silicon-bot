@@ -60,7 +60,7 @@ client.on("messageCreate", async msg => {
         const brawlhallaID = await getBrawlhallaID();
         console.log(brawlhallaID);
         if(brawlhallaID["brawlhalla_id"] == null) {
-            msg.reply("Sorry, you don't seem to have a BrawlhallaID associated with your provided SteamID :smiling_face_with_tear:");
+            msg.reply(`Sorry, you don't seem to have a BrawlhallaID associated with your provided SteamID of ${args[1]} :smiling_face_with_tear:`);
         }
         else {
             msg.reply(`Hey, your brawlhalla ID is ${brawlhallaID["brawlhalla_id"]}`);
