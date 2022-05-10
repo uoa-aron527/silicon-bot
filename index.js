@@ -50,6 +50,17 @@ client.on("messageCreate", async msg => {
         const statsValue = await getPlayerStats();
         console.log(statsValue);
     }
+
+    // Command to fetch a player's brawlhallaID using their steamID. Eg command -> --id {steamID}
+    if(command == 'id'){
+        const getBrawlhallaID = async () => {
+            let response = await axios.get(`https://api.brawlhalla.com/search?steamid=${args[1]}&api_key=${process.env.APIKEY}`);
+            return response.data;
+        }
+        const brawlhallaID = await getBrawlhallaID();
+        console.log(brawlhallaID);
+        // msg.reply(`Hey, your brawlhalla ID is ${brawlhallaID["brawlhalla_id"]}`);
+    }
 });
 
 client.login(token);
