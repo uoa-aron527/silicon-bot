@@ -1,5 +1,6 @@
-const { Client, Intents } = require('discord.js');
+const { Client, Intents, Collection } = require('discord.js');
 const axios = require('axios');
+const fs = require('fs'); 
 
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 
@@ -8,6 +9,14 @@ const token = process.env.TOKEN;
 
 const prefix = "--";
 
+client.commands = new Collection();
+
+const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
+for(const file of commandFiles){
+    const command = require(`./commands/${file}`);
+
+    client.commands.set(command.name, command);
+}
 //const fetch = require("node-fetch");
 
 client.once("ready", () => {
@@ -28,7 +37,7 @@ client.on("messageCreate", async msg => {
 
     // Command leading to Git repo source 
     if(command == 'source'){
-        msg.channel.send("Find me at https://github.com/uoa-aron527/silicon-bot");
+        client.commands.get('source').execute(msg, args);
     }
 
     // Command to fetch a character's data. Eg command -> --legend {legendID}
