@@ -1,23 +1,25 @@
+// Import all required packages
 const { Client, Intents, Collection } = require('discord.js');
 const axios = require('axios');
 const fs = require('fs'); 
+require('dotenv').config();
 
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 
-require('dotenv').config();
 const token = process.env.TOKEN;
 
 const prefix = "--";
 
+// This is to create a Collection of all commands as indicated in the /commands directory
 client.commands = new Collection();
 
+// Reading every .js file in the /commands directory pertaining to a particular bot command
 const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
 for(const file of commandFiles){
     const command = require(`./commands/${file}`);
 
     client.commands.set(command.name, command);
 }
-//const fetch = require("node-fetch");
 
 client.once("ready", () => {
     console.log("Silicon is up and running!");
@@ -31,8 +33,8 @@ client.on("messageCreate", async msg => {
     const command = args[0];
 
     // Introductory command
-    if(command == 'Hey'){
-        msg.channel.send("Yo Silicon here!");
+    if(command == 'hey'){
+        client.commands.get('hey').execute(msg, args);
     }
 
     // Command leading to Git repo source 
