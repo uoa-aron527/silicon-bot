@@ -56,10 +56,10 @@ client.on("messageCreate", async msg => {
         .setDescription(statsValue["bio_text"])
         .setColor('RANDOM')
         .addFields({
-            name: "Bio", value: statsValue["bio_quote"] + statsValue["bio_quote_about_attrib"]
+            name: "Bio", value: statsValue["bio_quote"].concat(statsValue["bio_quote_about_attrib"])
         },
         {
-            name: "Quote", value: statsValue["bio_quote_from"] + statsValue["bio_quote_from_attrib"]
+            name: "Quote", value: statsValue["bio_quote_from"].concat(statsValue["bio_quote_from_attrib"])
         });
 
         msg.reply({embeds: [embed]});
