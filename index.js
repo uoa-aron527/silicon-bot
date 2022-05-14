@@ -1,5 +1,5 @@
 // Import all required packages
-const { Client, Intents, Collection, MessageEmbed } = require('discord.js');
+const { Client, Intents, Collection, MessageEmbed, DiscordAPIError, CommandInteraction } = require('discord.js');
 const axios = require('axios');
 const fs = require('fs'); 
 require('dotenv').config();
@@ -29,6 +29,8 @@ client.on("messageCreate", async msg => {
 
     const args = msg.content.slice(prefix.length).split(/ +/);
     const command = args[0];
+
+    const user = msg instanceof CommandInteraction ? msg.user : msg.author;
 
     // Introductory command
     if(command == 'hey'){
@@ -82,6 +84,7 @@ client.on("messageCreate", async msg => {
         embed.setTitle("Here's the embed you made")
         .setDescription("This will display the future stats of players and legends")
         .setColor('RANDOM')
+        .setThumbnail(user.displayAvatarURL({dynamic : true}))
         .setTimestamp();
 
         msg.reply({embeds: [embed]});
