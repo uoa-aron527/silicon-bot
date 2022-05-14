@@ -32,6 +32,8 @@ client.on("messageCreate", async msg => {
 
     const user = msg instanceof CommandInteraction ? msg.user : msg.author;
 
+    const embed = new MessageEmbed();
+
     // Introductory command
     if(command == 'hey'){
         client.commands.get('hey').execute(msg, args);
@@ -49,6 +51,18 @@ client.on("messageCreate", async msg => {
             return response.data;
         }
         const statsValue = await getLegendStats();
+
+        embed.setTitle(statsValue["bio_name"])
+        .setDescription(statsValue["bio_text"])
+        .setColor('RANDOM')
+        .addFields({
+            name: "Bio", value: statsValue["bio_quote"] + statsValue["bio_quote_about_attrib"]
+        },
+        {
+            name: "Quote", value: statsValue["bio_quote_from"] + statsValue["bio_quote_from_attrib"]
+        });
+
+        msg.reply({embeds: [embed]});
         console.log(statsValue);
     }
 
@@ -59,6 +73,7 @@ client.on("messageCreate", async msg => {
             return response.data;
         }
         const statsValue = await getPlayerStats();
+
         console.log(statsValue);
     }
 
@@ -69,7 +84,7 @@ client.on("messageCreate", async msg => {
             return response.data;
         }
         const brawlhallaID = await getBrawlhallaID();
-        console.log(brawlhallaID);
+        console.log(brawlhallaID["brawlhalla_id"]);
         if(brawlhallaID["brawlhalla_id"] == null) {
             msg.reply(`Sorry, you don't seem to have a BrawlhallaID associated with your provided SteamID of ${args[1]} :smiling_face_with_tear:`);
         }
@@ -79,8 +94,7 @@ client.on("messageCreate", async msg => {
     }
 
     if(command == "embed"){
-        const embed = new MessageEmbed();
-
+        
         embed.setTitle("Here's the embed you made")
         .setDescription("This will display the future stats of players and legends")
         .setColor('RANDOM')
