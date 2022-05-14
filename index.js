@@ -60,7 +60,13 @@ client.on("messageCreate", async msg => {
         },
         {
             name: "Quote", value: statsValue["bio_quote_from"].concat(statsValue["bio_quote_from_attrib"])
-        });
+        },
+        {
+            name: "Weapon One", value: statsValue["weapon_one"], inline: true
+        },
+        {
+            name: "Weapon Two", value: statsValue["weapon_two"], inline: true
+        },);
 
         msg.reply({embeds: [embed]});
         console.log(statsValue);
