@@ -1,5 +1,5 @@
 // Import all required packages
-const { Client, Intents, Collection } = require('discord.js');
+const { Client, Intents, Collection, MessageEmbed } = require('discord.js');
 const axios = require('axios');
 const fs = require('fs'); 
 require('dotenv').config();
@@ -76,6 +76,19 @@ client.on("messageCreate", async msg => {
         else {
             msg.reply(`Hey, your brawlhalla ID is ${brawlhallaID["brawlhalla_id"]}`);
         }
+    }
+
+    if(command == "embed"){
+        const embed = new MessageEmbed();
+
+        embed.setTitle("Here's the embed you made")
+        .setDescription("This will display the future stats of players and legends")
+        .setColor('RANDOM')
+        .setTimestamp()
+
+        msg.reply({embeds: [embed]});
+        
+
     }
 });
 
