@@ -6,8 +6,6 @@ require('dotenv').config();
 
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 
-const token = process.env.TOKEN;
-
 const prefix = "--";
 
 // This is to create a Collection of all commands as indicated in the /commands directory
@@ -84,7 +82,7 @@ client.on("messageCreate", async msg => {
         embed.setTitle("Here's the embed you made")
         .setDescription("This will display the future stats of players and legends")
         .setColor('RANDOM')
-        .setTimestamp()
+        .setTimestamp();
 
         msg.reply({embeds: [embed]});
         
@@ -92,5 +90,5 @@ client.on("messageCreate", async msg => {
     }
 });
 
-client.login(token);
+client.login(process.env.TOKEN);
 
