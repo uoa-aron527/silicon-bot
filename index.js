@@ -88,7 +88,21 @@ client.on("messageCreate", async msg => {
         console.log(statsValue);
 
         embed.setTitle(statsValue["name"])
-        .setDescription("XP - ".concat(statsValue["xp"]));
+        .setDescription("XP - ".concat(statsValue["xp"]))
+        .setColor('RANDOM')
+        .setThumbnail(user.displayAvatarURL({dynamic: true}))
+        .addFields({
+            name: "Level", value: statsValue["level"].toString()
+        },
+        {
+            name: "Games Played", value: statsValue["games"].toString()
+        },
+        {
+            name: "Games Won", value: statsValue["wins"].toString()
+        },
+        {
+            name: "Win Percentage", value: ((statsValue["wins"]/statsValue["games"]) * 100).toFixed(2).toString().concat("%")
+        });
 
         msg.reply({embeds : [embed]});
     }
