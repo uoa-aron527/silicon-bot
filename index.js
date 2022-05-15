@@ -102,6 +102,18 @@ client.on("messageCreate", async msg => {
         },
         {
             name: "Win Percentage", value: ((statsValue["wins"]/statsValue["games"]) * 100).toFixed(2).toString().concat("%")
+        },
+        {
+            name: "Damage by Bombs", value: statsValue["damagebomb"], inline: true
+        },
+        {
+            name: "Bomb KOs", value: statsValue["kobomb"].toString(), inline: true
+        },
+        {
+            name: "Damage by Mines", value: statsValue["damagemine"], inline: true
+        },
+        {
+            name: "Mine KOs", value: statsValue["komine"].toString(), inline: true
         });
 
         msg.reply({embeds : [embed]});
