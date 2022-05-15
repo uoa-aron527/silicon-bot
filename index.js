@@ -86,6 +86,11 @@ client.on("messageCreate", async msg => {
         const statsValue = await getPlayerStats();
 
         console.log(statsValue);
+
+        embed.setTitle(statsValue["name"])
+        .setDescription("XP - ".concat(statsValue["xp"]));
+
+        msg.reply({embeds : [embed]});
     }
 
     // Command to fetch a player's brawlhallaID using their steamID. Eg command -> --id {steamID}
