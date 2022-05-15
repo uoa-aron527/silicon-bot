@@ -46,10 +46,14 @@ client.on("messageCreate", async msg => {
 
     // Command to fetch a character's data. Eg command -> --legend {legendID}
     if(command == 'legend'){
-        const getLegendStats = async () => {
-            let response = await axios.get(`https://api.brawlhalla.com/legend/${args[1]}/?api_key=${process.env.APIKEY}`);
-            return response.data;
+        if(parseInt(args[1]) > 59 || parseInt(args[1]) < 1){
+            msg.reply("Please enter a legend number between 1 and 59. There's only so many legends :skull:");
         }
+        else{
+            const getLegendStats = async () => {
+                let response = await axios.get(`https://api.brawlhalla.com/legend/${args[1]}/?api_key=${process.env.APIKEY}`);
+                return response.data;
+            }
         const statsValue = await getLegendStats();
 
         embed.setTitle(statsValue["bio_name"])
@@ -70,6 +74,7 @@ client.on("messageCreate", async msg => {
 
         msg.reply({embeds: [embed]});
         console.log(statsValue);
+        }
     }
 
     // Command to fetch a player's full time game data. Eg command -> --stats {brawlhallaID}
