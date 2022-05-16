@@ -110,10 +110,22 @@ client.on("messageCreate", async msg => {
             name: "Bomb KOs", value: statsValue["kobomb"].toString(), inline: true
         },
         {
+            name: '\u200b', value: '\u200b', inline: false
+        },
+        {
             name: "Damage by Mines", value: statsValue["damagemine"], inline: true
         },
         {
             name: "Mine KOs", value: statsValue["komine"].toString(), inline: true
+        },
+        {
+            name: '\u200b', value: '\u200b', inline: false
+        },
+        {
+            name: "Damage by Spikeballs", value: statsValue["damagespikeball"], inline: true
+        },
+        {
+            name: "Spikeball KOs", value: statsValue["kospikeball"].toString(), inline: true
         });
 
         msg.reply({embeds : [embed]});
