@@ -146,19 +146,6 @@ client.on("messageCreate", async msg => {
             msg.reply(`Hey, your brawlhalla ID is ${brawlhallaID["brawlhalla_id"]}`);
         }
     }
-
-    if(command == "embed"){
-        
-        embed.setTitle("Here's the embed you made")
-        .setDescription("This will display the future stats of players and legends")
-        .setColor('RANDOM')
-        .setThumbnail(user.displayAvatarURL({dynamic : true}))
-        .setTimestamp();
-
-        msg.reply({embeds: [embed]});
-        
-
-    }
 });
 
 client.login(process.env.TOKEN);
