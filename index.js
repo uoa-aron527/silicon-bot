@@ -9,6 +9,7 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_
 const prefix = "--";
 
 let topStats = [];
+let topStatsID = [];
 
 // This is to create a Collection of all commands as indicated in the /commands directory
 client.commands = new Collection();
@@ -48,7 +49,7 @@ client.on("messageCreate", async msg => {
 
     // Command to fetch a character's data. Eg command -> --legend {legendID}
     if(command == 'legend'){
-        if(parseInt(args[1]) > 59 || parseInt(args[1]) < 1){
+        if(parseInt(args[1]) > 59 || parseInt(args[1]) == 1 || parseInt(args[1]) == 2 || parseInt(args[1]) == 17 || parseInt(args[1]) == 27 || parseInt(args[1]) < 1){
             msg.reply("Please enter a legend number between 1 and 59. There's only so many legends :skull:");
         }
         else{
@@ -92,7 +93,7 @@ client.on("messageCreate", async msg => {
         }
         
         console.log(topStats);
-        console.log(statsValue["legends"][1]);
+        console.log(statsValue["legends"][4]);
 
         embed.setTitle(statsValue["name"])
         .setDescription("XP - ".concat(statsValue["xp"]))
