@@ -8,6 +8,8 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_
 
 const prefix = "--";
 
+let topStats = [];
+
 // This is to create a Collection of all commands as indicated in the /commands directory
 client.commands = new Collection();
 
@@ -85,7 +87,12 @@ client.on("messageCreate", async msg => {
         }
         const statsValue = await getPlayerStats();
 
-        console.log(statsValue);
+        for(let i = 0; i < statsValue["legends"].length; i++) {
+            topStats.push(statsValue["legends"][i]["damagedealt"]);
+        }
+        
+        console.log(topStats);
+        console.log(statsValue["legends"][1]);
 
         embed.setTitle(statsValue["name"])
         .setDescription("XP - ".concat(statsValue["xp"]))
