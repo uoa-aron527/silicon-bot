@@ -92,7 +92,10 @@ client.on("messageCreate", async msg => {
                                   "legend_id": statsValue["legends"][i]["legend_id"]});
         }
         
-        console.log(topStatsWithID);
+        console.log(topStatsWithID.sort((a, b) => {
+            return b["damagedealt"] - a["damagedealt"];
+        }));
+        
         console.log(statsValue["legends"][4]);
 
         embed.setTitle(statsValue["name"])
