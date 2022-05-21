@@ -89,14 +89,15 @@ client.on("messageCreate", async msg => {
 
         for(let i = 0; i < statsValue["legends"].length; i++) {
             topStatsWithID.push({"damagedealt": statsValue["legends"][i]["damagedealt"],
-                                  "legend_id": statsValue["legends"][i]["legend_id"]});
+                                 "legend_name": statsValue["legends"][i]["legend_name_key"].charAt(0).toUpperCase()
+                                 .concat(statsValue["legends"][i]["legend_name_key"].slice(1))});
         }
         
         console.log(topStatsWithID.sort((a, b) => {
             return b["damagedealt"] - a["damagedealt"];
         }));
-        
-        console.log(statsValue["legends"][4]);
+
+        // console.log(statsValue["legends"][4]);
 
         embed.setTitle(statsValue["name"])
         .setDescription("XP - ".concat(statsValue["xp"]))
@@ -140,6 +141,7 @@ client.on("messageCreate", async msg => {
         });
 
         msg.reply({embeds : [embed]});
+        topStatsWithID = [];
     }
 
     // Command to fetch a player's brawlhallaID using their steamID. Eg command -> --id {steamID}
