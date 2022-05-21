@@ -87,16 +87,6 @@ client.on("messageCreate", async msg => {
         }
         const statsValue = await getPlayerStats();
 
-        for(let i = 0; i < statsValue["legends"].length; i++) {
-            topStatsWithID.push({"damagedealt": statsValue["legends"][i]["damagedealt"],
-                                 "legend_name": statsValue["legends"][i]["legend_name_key"].charAt(0).toUpperCase()
-                                 .concat(statsValue["legends"][i]["legend_name_key"].slice(1))});
-        }
-        
-        console.log(topStatsWithID.sort((a, b) => {
-            return b["damagedealt"] - a["damagedealt"];
-        }));
-
         // console.log(statsValue["legends"][4]);
 
         embed.setTitle(statsValue["name"])
@@ -151,6 +141,20 @@ client.on("messageCreate", async msg => {
             return response.data;
         }
         const statsValue = await getTopStats();
+
+        for(let i = 0; i < statsValue["legends"].length; i++) {
+            topStatsWithID.push({"damagedealt": statsValue["legends"][i]["damagedealt"],
+                                 "legend_name": statsValue["legends"][i]["legend_name_key"].charAt(0).toUpperCase()
+                                 .concat(statsValue["legends"][i]["legend_name_key"].slice(1))});
+        }
+
+        topStatsWithID.sort((a, b) => {
+            return b["damagedealt"] - a["damagedealt"];
+        })
+
+        console.log(topStatsWithID);
+
+        topStatsWithID = [];
     }
     // Command to fetch a player's brawlhallaID using their steamID. Eg command -> --id {steamID}
     if(command == 'id'){
