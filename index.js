@@ -144,6 +144,14 @@ client.on("messageCreate", async msg => {
         topStatsWithID = [];
     }
 
+    // Command to fetch a player's top 15 legends sorted according to in-game damage done. Eg command -> --top {brawlhallaID}
+    if(command == 'top') {
+        const getTopStats = async () => {
+            let response = await axios.get(`https://api.brawlhalla.com/player/${args[1]}/stats?api_key=${process.env.APIKEY}`);
+            return response.data;
+        }
+        const statsValue = await getTopStats();
+    }
     // Command to fetch a player's brawlhallaID using their steamID. Eg command -> --id {steamID}
     if(command == 'id'){
         const getBrawlhallaID = async () => {
