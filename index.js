@@ -152,7 +152,7 @@ client.on("messageCreate", async msg => {
             return b["damagedealt"] - a["damagedealt"];
         })
 
-        console.log(topStatsWithID);
+        // console.log(topStatsWithID);
         
         embed.setTitle(statsValue["name"])
         .setDescription("Here are your top 15 legends in regards with damage done")
@@ -161,9 +161,16 @@ client.on("messageCreate", async msg => {
 
         let i = 0;
 
-        while(topStatsWithID[i]["damagedealt"] != 0 || i != 14) {
-
+        while(topStatsWithID[i]["damagedealt"] != 0 && i != 15) {
+            // embed.addField({
+            //     name: `${i}. ${topStatsWithID[i]["legend_name"]}`,
+            //     value: topStatsWithID[i]["damagedealt"]
+            // });
+            console.log({"name": `${i+1}. ${topStatsWithID[i]["legend_name"]}`, "value": topStatsWithID[i]["damagedealt"]})
+            i++;
         }
+
+        // msg.reply({embeds : [embed]});
 
         topStatsWithID = [];
     }
