@@ -166,10 +166,10 @@ client.on("messageCreate", async msg => {
             currentField.push({"name":`${i+1}. ${topStatsWithID[i]["legend_name"]}`, 
                                 "value":topStatsWithID[i]["damagedealt"]});
 
-            // embed.addField({
-            //     name: currentField[i]["name"],
-            //     value: currentField[i]["value"]
-            // });
+            embed.addFields({
+                name: currentField[i]["name"],
+                value: currentField[i]["value"]
+            });
             // console.log({"name": `${i+1}. ${topStatsWithID[i]["legend_name"]}`, "value": topStatsWithID[i]["damagedealt"]})
             i++;
         }
@@ -177,7 +177,7 @@ client.on("messageCreate", async msg => {
         console.log(currentField);
 
 
-        // msg.reply({embeds : [embed]});
+        msg.reply({embeds : [embed]});
 
         topStatsWithID = [];
     }
