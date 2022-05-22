@@ -75,7 +75,7 @@ client.on("messageCreate", async msg => {
         },);
 
         msg.reply({embeds: [embed]});
-        console.log(statsValue);
+        // console.log(statsValue);
         }
     }
 
