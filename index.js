@@ -161,14 +161,21 @@ client.on("messageCreate", async msg => {
 
         let i = 0;
 
+        let currentField = [];
         while(topStatsWithID[i]["damagedealt"] != 0 && i != 15) {
+            currentField.push({"name":`${i+1}. ${topStatsWithID[i]["legend_name"]}`, 
+                                "value":topStatsWithID[i]["damagedealt"]});
+
             // embed.addField({
-            //     name: `${i}. ${topStatsWithID[i]["legend_name"]}`,
-            //     value: topStatsWithID[i]["damagedealt"]
+            //     name: currentField[i]["name"],
+            //     value: currentField[i]["value"]
             // });
-            console.log({"name": `${i+1}. ${topStatsWithID[i]["legend_name"]}`, "value": topStatsWithID[i]["damagedealt"]})
+            // console.log({"name": `${i+1}. ${topStatsWithID[i]["legend_name"]}`, "value": topStatsWithID[i]["damagedealt"]})
             i++;
         }
+
+        console.log(currentField);
+
 
         // msg.reply({embeds : [embed]});
 
