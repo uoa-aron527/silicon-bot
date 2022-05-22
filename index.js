@@ -153,6 +153,17 @@ client.on("messageCreate", async msg => {
         })
 
         console.log(topStatsWithID);
+        
+        embed.setTitle(statsValue["name"])
+        .setDescription("Here are your top 15 legends in regards with damage done")
+        .setColor('RANDOM')
+        .setThumbnail(user.displayAvatarURL({dynamic: true}));
+
+        let i = 0;
+
+        while(topStatsWithID[i]["damagedealt"] != 0 || i != 14) {
+
+        }
 
         topStatsWithID = [];
     }
