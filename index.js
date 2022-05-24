@@ -143,10 +143,14 @@ client.on("messageCreate", async msg => {
         const statsValue = await getTopStats();
 
         for(let i = 0; i < statsValue["legends"].length; i++) {
-            topStatsWithID.push({"damagedealt": statsValue["legends"][i]["damagedealt"],
-                                 "legend_name": statsValue["legends"][i]["legend_name_key"].charAt(0).toUpperCase()
-                                 .concat(statsValue["legends"][i]["legend_name_key"].slice(1))});
+            if(statsValue["legends"][i]["damagedealt"] !== "0" ) {
+                topStatsWithID.push({"damagedealt": statsValue["legends"][i]["damagedealt"],
+                                    "legend_name": statsValue["legends"][i]["legend_name_key"].charAt(0).toUpperCase()
+                                    .concat(statsValue["legends"][i]["legend_name_key"].slice(1))});
+            }
         }
+
+        console.log(topStatsWithID);
 
         topStatsWithID.sort((a, b) => {
             return b["damagedealt"] - a["damagedealt"];
@@ -162,7 +166,7 @@ client.on("messageCreate", async msg => {
         let i = 0;
 
         let currentField = [];
-        while(topStatsWithID[i]["damagedealt"] != 0 && i != 15) {
+        while(i != 15) {
             currentField.push({"name":`${i+1}. ${topStatsWithID[i]["legend_name"]}`, 
                                 "value":topStatsWithID[i]["damagedealt"]});
 
