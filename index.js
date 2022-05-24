@@ -156,8 +156,6 @@ client.on("messageCreate", async msg => {
                 }
             }
 
-            // console.log(topStatsWithID);
-
             topStatsWithID.sort((a, b) => {
                 return b["damagedealt"] - a["damagedealt"];
             })
@@ -180,21 +178,6 @@ client.on("messageCreate", async msg => {
                 });
                 i++;
             }
-            // let currentField = [];
-            // while(i != 15) {
-            //     currentField.push({"name":`${i+1}. ${topStatsWithID[i]["legend_name"]}`, 
-            //                         "value":topStatsWithID[i]["damagedealt"]});
-
-            //     embed.addFields({
-            //         name: currentField[i]["name"],
-            //         value: currentField[i]["value"]
-            //     });
-            //     // console.log({"name": `${i+1}. ${topStatsWithID[i]["legend_name"]}`, "value": topStatsWithID[i]["damagedealt"]})
-            //     i++;
-            // }
-
-            // console.log(currentField);
-
 
             msg.reply({embeds : [embed]});
 
