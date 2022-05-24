@@ -156,13 +156,15 @@ client.on("messageCreate", async msg => {
                 }
             }
 
-            console.log(topStatsWithID);
+            // console.log(topStatsWithID);
 
             topStatsWithID.sort((a, b) => {
                 return b["damagedealt"] - a["damagedealt"];
             })
 
-            // console.log(topStatsWithID);
+            topStatsWithID = topStatsWithID.slice(0,15);
+
+            console.log(topStatsWithID);
             
             embed.setTitle(statsValue["name"])
             .setDescription("Here are your top 15 legends in regards with damage done")
@@ -171,20 +173,27 @@ client.on("messageCreate", async msg => {
 
             let i = 0;
 
-            let currentField = [];
-            while(i != 15) {
-                currentField.push({"name":`${i+1}. ${topStatsWithID[i]["legend_name"]}`, 
-                                    "value":topStatsWithID[i]["damagedealt"]});
-
+            while(i < 15 && i!= topStatsWithID.length) {
                 embed.addFields({
-                    name: currentField[i]["name"],
-                    value: currentField[i]["value"]
+                    name: `${i+1}. ${topStatsWithID[i]["legend_name"]}`,
+                    value: topStatsWithID[i]["damagedealt"]
                 });
-                // console.log({"name": `${i+1}. ${topStatsWithID[i]["legend_name"]}`, "value": topStatsWithID[i]["damagedealt"]})
                 i++;
             }
+            // let currentField = [];
+            // while(i != 15) {
+            //     currentField.push({"name":`${i+1}. ${topStatsWithID[i]["legend_name"]}`, 
+            //                         "value":topStatsWithID[i]["damagedealt"]});
 
-            console.log(currentField);
+            //     embed.addFields({
+            //         name: currentField[i]["name"],
+            //         value: currentField[i]["value"]
+            //     });
+            //     // console.log({"name": `${i+1}. ${topStatsWithID[i]["legend_name"]}`, "value": topStatsWithID[i]["damagedealt"]})
+            //     i++;
+            // }
+
+            // console.log(currentField);
 
 
             msg.reply({embeds : [embed]});
