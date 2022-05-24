@@ -142,48 +142,55 @@ client.on("messageCreate", async msg => {
         }
         const statsValue = await getTopStats();
 
-        for(let i = 0; i < statsValue["legends"].length; i++) {
-            if(statsValue["legends"][i]["damagedealt"] !== "0" ) {
-                topStatsWithID.push({"damagedealt": statsValue["legends"][i]["damagedealt"],
-                                    "legend_name": statsValue["legends"][i]["legend_name_key"].charAt(0).toUpperCase()
-                                    .concat(statsValue["legends"][i]["legend_name_key"].slice(1))});
+        if(statsValue["legends"].length == 0) {
+            msg.reply("Sorry, you haven't played with a single legend yet to get any data ;(");
+        }
+
+        else {
+
+            for(let i = 0; i < statsValue["legends"].length; i++) {
+                if(statsValue["legends"][i]["damagedealt"] !== "0" ) {
+                    topStatsWithID.push({"damagedealt": statsValue["legends"][i]["damagedealt"],
+                                        "legend_name": statsValue["legends"][i]["legend_name_key"].charAt(0).toUpperCase()
+                                        .concat(statsValue["legends"][i]["legend_name_key"].slice(1))});
+                }
             }
-        }
 
-        console.log(topStatsWithID);
+            console.log(topStatsWithID);
 
-        topStatsWithID.sort((a, b) => {
-            return b["damagedealt"] - a["damagedealt"];
-        })
+            topStatsWithID.sort((a, b) => {
+                return b["damagedealt"] - a["damagedealt"];
+            })
 
-        // console.log(topStatsWithID);
-        
-        embed.setTitle(statsValue["name"])
-        .setDescription("Here are your top 15 legends in regards with damage done")
-        .setColor('RANDOM')
-        .setThumbnail(user.displayAvatarURL({dynamic: true}));
+            // console.log(topStatsWithID);
+            
+            embed.setTitle(statsValue["name"])
+            .setDescription("Here are your top 15 legends in regards with damage done")
+            .setColor('RANDOM')
+            .setThumbnail(user.displayAvatarURL({dynamic: true}));
 
-        let i = 0;
+            let i = 0;
 
-        let currentField = [];
-        while(i != 15) {
-            currentField.push({"name":`${i+1}. ${topStatsWithID[i]["legend_name"]}`, 
-                                "value":topStatsWithID[i]["damagedealt"]});
+            let currentField = [];
+            while(i != 15) {
+                currentField.push({"name":`${i+1}. ${topStatsWithID[i]["legend_name"]}`, 
+                                    "value":topStatsWithID[i]["damagedealt"]});
 
-            embed.addFields({
-                name: currentField[i]["name"],
-                value: currentField[i]["value"]
-            });
-            // console.log({"name": `${i+1}. ${topStatsWithID[i]["legend_name"]}`, "value": topStatsWithID[i]["damagedealt"]})
-            i++;
-        }
+                embed.addFields({
+                    name: currentField[i]["name"],
+                    value: currentField[i]["value"]
+                });
+                // console.log({"name": `${i+1}. ${topStatsWithID[i]["legend_name"]}`, "value": topStatsWithID[i]["damagedealt"]})
+                i++;
+            }
 
-        console.log(currentField);
+            console.log(currentField);
 
 
-        msg.reply({embeds : [embed]});
+            msg.reply({embeds : [embed]});
 
-        topStatsWithID = [];
+            topStatsWithID = [];
+        }    
     }
     // Command to fetch a player's brawlhallaID using their steamID. Eg command -> --id {steamID}
     if(command == 'id'){
