@@ -184,6 +184,12 @@ client.on("messageCreate", async msg => {
             topStatsWithID = [];
         }    
     }
+
+    // Command to fetch a player's ranked game stats. Eg command -> --rank {brawlhallaID}
+    if(command == 'rank') {
+        msg.reply("Lets get ranked data :))");
+        msg.react("🦾");
+    }
     // Command to fetch a player's brawlhallaID using their steamID. Eg command -> --id {steamID}
     if(command == 'id'){
         const getBrawlhallaID = async () => {
