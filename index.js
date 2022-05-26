@@ -191,8 +191,8 @@ client.on("messageCreate", async msg => {
             let response = await axios.get(`https://api.brawlhalla.com/player/${args[1]}/ranked?api_key=${process.env.APIKEY}`);
             return response.data;
         }
-        // const playerRank = await getPlayerRank();
-        // console.log(playerRank);
+        const playerRank = await getPlayerRank();
+        console.log(playerRank);
         msg.react("🦾");
     }
     // Command to fetch a player's brawlhallaID using their steamID. Eg command -> --id {steamID}
