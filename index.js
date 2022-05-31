@@ -198,7 +198,16 @@ client.on("messageCreate", async msg => {
         embed.setTitle(playerRank["name"])
         .setDescription("Here is your ranked data")
         .setColor("RANDOM")
-        .setThumbnail(user.displayAvatarURL({dynamic: true}));
+        .setThumbnail(user.displayAvatarURL({dynamic: true}))
+        .addFields({
+            name: "Rating", value: playerRank["rating"]
+        },
+        {
+            name: "Peak Rating", value: playerRank["peak_rating"]
+        },
+        {
+            name: "Tier", value: playerRank["tier"]
+        });
     }
     // Command to fetch a player's brawlhallaID using their steamID. Eg command -> --id {steamID}
     if(command == 'id'){
