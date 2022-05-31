@@ -194,6 +194,11 @@ client.on("messageCreate", async msg => {
         const playerRank = await getPlayerRank();
         console.log(playerRank);
         msg.react("🦾");
+
+        embed.setTitle(playerRank["name"])
+        .setDescription("Here is your ranked data")
+        .setColor("RANDOM")
+        .setThumbnail(user.displayAvatarURL({dynamic: true}));
     }
     // Command to fetch a player's brawlhallaID using their steamID. Eg command -> --id {steamID}
     if(command == 'id'){
