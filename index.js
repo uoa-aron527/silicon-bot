@@ -161,8 +161,6 @@ client.on("messageCreate", async msg => {
             })
 
             topStatsWithID = topStatsWithID.slice(0,15);
-
-            console.log(topStatsWithID);
             
             embed.setTitle(statsValue["name"])
             .setDescription("Here are your top 15 legends in regards with damage done")
@@ -216,6 +214,9 @@ client.on("messageCreate", async msg => {
         },
         {
             name: "Win Percentage", value: (playerRank["wins"] / playerRank["games"] * 100).toFixed(2).toString().concat("%")
+        },
+        {
+            name: '\u200b', value: '\u200b', inline: false
         },
         {
             name: "Top Used Legends", value: "Here are your most used legends"
