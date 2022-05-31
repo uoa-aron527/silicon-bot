@@ -213,6 +213,9 @@ client.on("messageCreate", async msg => {
         },
         {
             name: "Games Won", value: playerRank["wins"].toString()
+        },
+        {
+            name: "Win Percentage", value: (playerRank["wins"] / playerRank["games"] * 100).toFixed(2).toString().concat("%")
         });
 
         msg.reply({embeds : [embed]});
