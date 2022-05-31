@@ -207,6 +207,12 @@ client.on("messageCreate", async msg => {
         },
         {
             name: "Tier", value: playerRank["tier"]
+        },
+        {
+            name: "Games Played", value: playerRank["games"].toString()
+        },
+        {
+            name: "Games Won", value: playerRank["wins"].toString()
         });
 
         msg.reply({embeds : [embed]});
