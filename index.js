@@ -218,8 +218,23 @@ client.on("messageCreate", async msg => {
             name: "Win Percentage", value: (playerRank["wins"] / playerRank["games"] * 100).toFixed(2).toString().concat("%")
         },
         {
-            name: "Top Used Legends", value: "Here are your must used legends"
+            name: "Top Used Legends", value: "Here are your most used legends"
         });
+
+        let len = 0;
+
+        if(playerRank["legends"].length >= 4) {
+            len = 4;
+        }
+        else {
+            len = playerRank["legends"].length;
+        }
+
+        for(let i = 0; i < len; i++) {
+            console.log(playerRank["legends"][i]["legend_name_key"]);
+        }
+
+        
 
         msg.reply({embeds : [embed]});
     }
