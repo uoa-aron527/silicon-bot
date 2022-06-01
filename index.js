@@ -232,6 +232,11 @@ client.on("messageCreate", async msg => {
         }
 
         for(let i = 0; i < len; i++) {
+            embed.addFields({
+                name: `${i+1}. ${playerRank["legends"][i]["legend_name_key"].charAt(0).toUpperCase().concat(playerRank["legends"][i]["legend_name_key"].slice(1))}`,
+                value: playerRank["legends"][i]["tier"],
+                inline: true
+            })
             console.log(playerRank["legends"][i]["legend_name_key"]);
         }
 
