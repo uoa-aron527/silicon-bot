@@ -236,6 +236,11 @@ client.on("messageCreate", async msg => {
                 name: `${i+1}. ${playerRank["legends"][i]["legend_name_key"].charAt(0).toUpperCase().concat(playerRank["legends"][i]["legend_name_key"].slice(1))}`,
                 value: playerRank["legends"][i]["tier"],
                 inline: true
+            },
+            {
+                name: 'Rating',
+                value: playerRank["legends"][i]["rating"].toString(),
+                inline: true
             })
             console.log(playerRank["legends"][i]["legend_name_key"]);
         }
