@@ -242,6 +242,13 @@ client.on("messageCreate", async msg => {
                 value: playerRank["legends"][i]["rating"].toString(),
                 inline: true
             });
+
+            // To make sure not to add a whitespaced row after the final set of legends
+            if(i + 1 != len) {
+                embed.addFields({
+                    name: '\u200b', value: '\u200b', inline: false
+                })
+            }
             // {
             //     name: '\u200b', value: '\u200b', inline: false
             // })
