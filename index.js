@@ -87,8 +87,6 @@ client.on("messageCreate", async msg => {
         }
         const statsValue = await getPlayerStats();
 
-        // console.log(statsValue["legends"][4]);
-
         embed.setTitle(statsValue["name"])
         .setDescription("XP - ".concat(statsValue["xp"]))
         .setColor('RANDOM')
@@ -249,13 +247,11 @@ client.on("messageCreate", async msg => {
                     name: '\u200b', value: '\u200b', inline: false
                 })
             }
-            console.log(playerRank["legends"][i]["legend_name_key"]);
         }
-
-        
 
         msg.reply({embeds : [embed]});
     }
+
     // Command to fetch a player's brawlhallaID using their steamID. Eg command -> --id {steamID}
     if(command == 'id'){
         const getBrawlhallaID = async () => {
@@ -270,6 +266,11 @@ client.on("messageCreate", async msg => {
         else {
             msg.reply(`Hey, your brawlhalla ID is ${brawlhallaID["brawlhalla_id"]}`);
         }
+    }
+
+    // Command to get all commands the bot is capable of making. Proposed command -> --help
+    if(command =='help') {
+        
     }
 });
 
