@@ -241,10 +241,10 @@ client.on("messageCreate", async msg => {
                 name: 'Rating',
                 value: playerRank["legends"][i]["rating"].toString(),
                 inline: true
-            },
-            {
-                name: '\u200b', value: '\u200b', inline: false
-            })
+            });
+            // {
+            //     name: '\u200b', value: '\u200b', inline: false
+            // })
             console.log(playerRank["legends"][i]["legend_name_key"]);
         }
 
